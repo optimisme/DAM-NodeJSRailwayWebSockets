@@ -8,8 +8,11 @@ npm run dev
 
 Per poder-lo executar a railway:
 
+```
 railway link
+
 railway up
+```
 
 Navegar a la pàgina web que correspongui, en local: 
 
