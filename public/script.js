@@ -131,11 +131,21 @@ function resizeCanvas () {
     console.log("Canvas resized to: " + cnv.width + "x" + cnv.height)
 }
 
+function getUID() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < 8; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+}
+
 // Funció que es crida quan s'inicia el 'drag'
 function startDragging(event) {
 
     event.preventDefault()
 
+    let uuid = getUID()
     let name = document.getElementById("names").value;
     let x = event.clientX || event.touches[0].clientX
     let y = event.clientY || event.touches[0].clientY
@@ -144,6 +154,7 @@ function startDragging(event) {
 
     isDragging = true;
     newPoligon = {
+        id: uuid,
         user: name,
         color: selectedColor,
         points: [{x: x, y: y}]
@@ -154,12 +165,13 @@ function startDragging(event) {
 function doDragging(event) {
 
   if (isDragging) {
-    let x = event.clientX || event.touches[0].clientX
-    let y = event.clientY || event.touches[0].clientY
-    lastX = x
-    lastY = y
-    newPoligon.points.push({x: x, y: y})
-  }
+        let x = event.clientX || event.touches[0].clientX
+        let y = event.clientY || event.touches[0].clientY
+        lastX = x
+        lastY = y
+        newPoligon.points.push({x: x, y: y})
+        sendWebSocket({ type: "poligon", value: newPoligon });
+    }
 }
 
 // Funció que es crida quan s'acaba el 'drag'

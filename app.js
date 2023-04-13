@@ -8,6 +8,7 @@ const webSockets  = require('./utilsWebSockets.js')
 
 var ws = new webSockets()
 var gLoop = new gameLoop()
+var poligons = []
 
 // Start HTTP server
 const app = express()
@@ -34,7 +35,7 @@ function shutDown() {
   process.exit(0);
 }
 
-var poligons = []
+
 
 function broadcastPoligons () {
   ws.broadcast({ type: "poligons", value: poligons })
@@ -48,18 +49,30 @@ ws.onConnection = (socket, id) => {
 }
 
 ws.onMessage = (socket, id, obj) => {
-   if (obj.type == "poligon") {
-    while (poligons.length > 25) {
-      poligons.shift();
+
+  if (obj.type == "poligon") {
+
+    let receivedPoligon = obj.value;
+
+    const existingPolygonIndex = poligons.findIndex(poligon => {
+      return poligon.id === receivedPoligon.id
+    });
+
+    if (existingPolygonIndex !== -1) {
+      poligons[existingPolygonIndex] = receivedPoligon;
+    } else {
+      while (poligons.length > 25) {
+        poligons.shift();
+      }
+      poligons.push(receivedPoligon);
     }
-    poligons.push(obj.value)
   }
 
   if (obj.type == "reset") {
-    poligons = []
+    poligons = [];
   }
-  // broadcastPoligons()
-}
+};
+
 
 gLoop.init();
 gLoop.run = (fps) => {
