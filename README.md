@@ -17,3 +17,7 @@ railway up
 Navegar a la pàgina web que correspongui, en local: 
 
 [http://localhost:8000](http://localhost:8000)
+
+Captura de pantalla:
+
+<img src="./screenshot.png" width="400">
