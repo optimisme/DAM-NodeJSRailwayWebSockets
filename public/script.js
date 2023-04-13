@@ -14,9 +14,6 @@ var lastY = -1
 window.addEventListener('load', init);
 function init () {
 
-    // Assignar un nom d'usuari a partir de la llista d'animals
-    initNames()
-
     // Iniciar el canvas
     cnv = document.getElementById("cnv")
     ctx = cnv.getContext("2d")
@@ -80,20 +77,7 @@ function drawPoligons (poligons) {
 
 function drawPoligon (poligon) {
     
-    // Dibuixa un quadre amb el nom d'usuari a la posició del primer punt
-    ctx.font = "10px Arial"
-    ctx.fillStyle = poligon.color
     ctx.strokeStyle = poligon.color
-    let userTextWidth = ctx.measureText(poligon.user).width
-    ctx.fillRect(poligon.points[0].x, poligon.points[0].y, userTextWidth + 10, 10)
-
-    // Dibuixar el text en negre o blanc
-    if (["purple", "green", "blue", "navy", "black"].indexOf(poligon.color) != -1) {
-        ctx.fillStyle = "white"
-    } else {
-        ctx.fillStyle = "black"
-    }
-    ctx.fillText(poligon.user, poligon.points[0].x + 5, poligon.points[0].y + 8)
 
     // Dibuixa el polígon
     ctx.beginPath()
@@ -130,7 +114,7 @@ function drawSelectedColor () {
 function drawTitle () {
     ctx.fillStyle = "black"
     ctx.font = "16px Arial"
-    ctx.fillText("Dibuixa amb els colors", 4, 100)
+    ctx.fillText("Dibuixa amb els colors", 4, 75)
 }
 
 function resizeCanvas () {
@@ -154,7 +138,6 @@ function startDragging(event) {
     event.preventDefault()
 
     let uuid = getUID()
-    let name = document.getElementById("names").value;
     let x = event.clientX || event.touches[0].clientX
     let y = event.clientY || event.touches[0].clientY
     lastX = x
@@ -163,7 +146,6 @@ function startDragging(event) {
     isDragging = true;
     newPoligon = {
         id: uuid,
-        user: name,
         color: selectedColor,
         points: [{x: x, y: y}]
     }
