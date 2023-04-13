@@ -60,6 +60,7 @@ var run = () => {
     // Dibuixa la graella de colors
     drawColorGrid()
     drawSelectedColor()
+    drawTitle()
 }
 
 function drawPoligons (poligons) {
@@ -80,10 +81,11 @@ function drawPoligons (poligons) {
 function drawPoligon (poligon) {
     
     // Dibuixa un quadre amb el nom d'usuari a la posició del primer punt
+    ctx.font = "10px Arial"
+    ctx.fillStyle = poligon.color
     ctx.strokeStyle = poligon.color
     let userTextWidth = ctx.measureText(poligon.user).width
-    ctx.fillStyle = poligon.color
-    ctx.fillRect(poligon.points[0].x, poligon.points[0].y, userTextWidth + 10, 20)
+    ctx.fillRect(poligon.points[0].x, poligon.points[0].y, userTextWidth + 10, 10)
 
     // Dibuixar el text en negre o blanc
     if (["purple", "green", "blue", "navy", "black"].indexOf(poligon.color) != -1) {
@@ -91,7 +93,7 @@ function drawPoligon (poligon) {
     } else {
         ctx.fillStyle = "black"
     }
-    ctx.fillText(poligon.user, poligon.points[0].x + 5, poligon.points[0].y + 15)
+    ctx.fillText(poligon.user, poligon.points[0].x + 5, poligon.points[0].y + 8)
 
     // Dibuixa el polígon
     ctx.beginPath()
@@ -123,6 +125,12 @@ function drawSelectedColor () {
     ctx.beginPath()
     ctx.arc(x + size / 2, y + size / 2, radius, 0, 2 * Math.PI)
     ctx.fill()
+}
+
+function drawTitle () {
+    ctx.fillStyle = "black"
+    ctx.font = "16px Arial"
+    ctx.fillText("Dibuixa amb els colors", 4, 100)
 }
 
 function resizeCanvas () {
