@@ -1,10 +1,10 @@
 const express     = require('express')
 const fs          = require('fs').promises
 
-const webSockets  = require('./appWS.js')
 const post        = require('./utilsPost.js')
 const wait        = require('./utilsWait.js')
 const gameLoop    = require('./utilsGameLoop.js');
+const webSockets  = require('./utilsWebSockets.js')
 
 var ws = new webSockets()
 var gLoop = new gameLoop()
