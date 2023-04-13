@@ -13,6 +13,8 @@ class Obj {
         this.frameCount = 0
         this.fpsStartTime = Date.now()
         this.currentFPS = 0
+
+        this.start()
     }
 
     start() {
