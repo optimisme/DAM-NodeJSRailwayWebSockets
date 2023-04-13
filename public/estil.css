@@ -1,0 +1,26 @@
+body {
+    background-color: black;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.9em;
+    margin: 0;
+    user-select: none;
+}
+#cnv {
+    background-color: white;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+#label {
+    position: absolute;
+    top: 50px;
+    left: 4px;
+}
+
+#reset {
+    bottom: 8px;
+    position: absolute;
+    left: 8px;
+}
