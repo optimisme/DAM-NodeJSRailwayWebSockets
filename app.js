@@ -44,11 +44,12 @@ function broadcastPoligons () {
 ws.init(httpServer, port)
 
 ws.onConnection = (socket, id) => {
+  // Aquest mètode es crida quan hi ha una nova connexió WebSocket
   broadcastPoligons()
 }
 
 ws.onMessage = (socket, id, obj) => {
-
+  // Aquest mètode es crida quan es rep un missatge per WebSocket
   if (obj.type == "poligon") {
 
     let receivedPoligon = obj.value;
@@ -75,5 +76,6 @@ ws.onMessage = (socket, id, obj) => {
 
 gLoop.init();
 gLoop.run = (fps) => {
+  // Aquest mètode s'intenta executar 30 cops per segon
   broadcastPoligons()
 }
