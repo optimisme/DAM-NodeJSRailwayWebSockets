@@ -64,7 +64,7 @@ function drawPoligons (poligons) {
 
     // Surt si no hi ha res a dibuixar
     let lastPoligon = poligons[poligons.length - 1]
-    if (!lastPoligon || lastPoligon.points.length < 0) {
+    if (!lastPoligon) {
         return;
     }
 
