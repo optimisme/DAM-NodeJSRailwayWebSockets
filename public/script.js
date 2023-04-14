@@ -64,7 +64,7 @@ function drawPoligons (poligons) {
 
     // Surt si no hi ha res a dibuixar
     let lastPoligon = poligons[poligons.length - 1]
-    if (!lastPoligon || lastPoligon.length < 0) {
+    if (!lastPoligon || lastPoligon.points.length < 0) {
         return;
     }
 
@@ -124,7 +124,7 @@ function resizeCanvas () {
 }
 
 function getUID() {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789¡!¿?"@#$%&()=,.;:+-*[]{}';
     let result = '';
     for (let i = 0; i < 8; i++) {
       result += characters.charAt(Math.floor(Math.random() * characters.length));
@@ -180,7 +180,7 @@ function stopDragging(event) {
     // Indicar que ja no estem fent dragging
     isDragging = false;
 
-    // Enviar la nostra llista de polígons per WebSocket
+    // Enviar l'últim polígon
     sendWebSocket({ type: "poligon", value: newPoligon });
 }
 
