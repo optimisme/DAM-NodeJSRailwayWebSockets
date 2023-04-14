@@ -18,6 +18,8 @@ Navegar a la pàgina web que correspongui, en local:
 
 [http://localhost:8000](http://localhost:8000)
 
+Obrir un parell o tres de finestres del navegador per comprovar que s'actualitzen totes a mateix temps.
+
 Captura de pantalla:
 
 <img src="./screenshot.png" width="400">
