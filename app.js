@@ -71,7 +71,12 @@ ws.onMessage = (socket, id, obj) => {
   if (obj.type == "reset") {
     poligons = [];
   }
-};
+}
+
+ws.onClose = (socket, id) => {
+  // Aquest mètode es crida quan hi ha una desconnexió d'un client WebSocket
+  console.log("WebSocket client disconnected: " + id)
+}
 
 
 gLoop.init();
