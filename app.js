@@ -61,7 +61,7 @@ ws.onMessage = (socket, id, obj) => {
     if (existingPolygonIndex !== -1) {
       poligons[existingPolygonIndex] = receivedPoligon;
     } else {
-      while (poligons.length > 100) {
+      while (poligons.length > 10) {
         poligons.shift();
       }
       poligons.push(receivedPoligon);
